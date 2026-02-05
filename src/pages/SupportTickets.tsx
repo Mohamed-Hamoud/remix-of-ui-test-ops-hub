@@ -35,12 +35,12 @@ import { PageHeader } from "@/components/shared/PageHeader";
          backLabel="Support"
       />
  
-       {/* Filters Card - Compact */}
+       {/* Filters Card */}
        <div className="rounded-xl border border-border bg-card card-shadow">
-         <div className="p-4">
-           <div className="flex flex-wrap items-end gap-3">
-             {/* Search */}
-             <div className="flex-1 min-w-[200px] max-w-sm relative">
+         <div className="p-4 space-y-3">
+           {/* Row 1: Search + Dropdowns */}
+           <div className="flex flex-wrap items-center gap-2">
+             <div className="relative w-64">
                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                <Input
                  placeholder="Search tickets..."
@@ -49,12 +49,10 @@ import { PageHeader } from "@/components/shared/PageHeader";
                  className="pl-9 h-9"
                />
              </div>
-
-             {/* Status */}
              <select
                value={filters.status}
                onChange={(e) => setFilters({ ...filters, status: e.target.value })}
-               className="h-9 px-3 rounded-md border border-input bg-background text-foreground text-sm"
+               className="h-9 px-3 rounded-md border border-input bg-background text-foreground text-sm min-w-[120px]"
              >
                <option value="all">All Statuses</option>
                <option value="open">Open</option>
@@ -62,12 +60,10 @@ import { PageHeader } from "@/components/shared/PageHeader";
                <option value="resolved">Resolved</option>
                <option value="closed">Closed</option>
              </select>
-
-             {/* Priority */}
              <select
                value={filters.priority}
                onChange={(e) => setFilters({ ...filters, priority: e.target.value })}
-               className="h-9 px-3 rounded-md border border-input bg-background text-foreground text-sm"
+               className="h-9 px-3 rounded-md border border-input bg-background text-foreground text-sm min-w-[120px]"
              >
                <option value="all">All Priorities</option>
                <option value="low">Low</option>
@@ -75,12 +71,10 @@ import { PageHeader } from "@/components/shared/PageHeader";
                <option value="high">High</option>
                <option value="urgent">Urgent</option>
              </select>
-
-             {/* Category */}
              <select
                value={filters.category}
                onChange={(e) => setFilters({ ...filters, category: e.target.value })}
-               className="h-9 px-3 rounded-md border border-input bg-background text-foreground text-sm"
+               className="h-9 px-3 rounded-md border border-input bg-background text-foreground text-sm min-w-[130px]"
              >
                <option value="all">All Categories</option>
                <option value="order">Order Issues</option>
@@ -88,47 +82,51 @@ import { PageHeader } from "@/components/shared/PageHeader";
                <option value="delivery">Delivery</option>
                <option value="general">General</option>
              </select>
-
-             {/* Agent */}
              <select
                value={filters.agent}
                onChange={(e) => setFilters({ ...filters, agent: e.target.value })}
-               className="h-9 px-3 rounded-md border border-input bg-background text-foreground text-sm"
+               className="h-9 px-3 rounded-md border border-input bg-background text-foreground text-sm min-w-[110px]"
              >
                <option value="all">All Agents</option>
              </select>
+           </div>
 
-             {/* Date Range */}
-             <Input
-               type="date"
-               value={filters.fromDate}
-               onChange={(e) => setFilters({ ...filters, fromDate: e.target.value })}
-               className="h-9 w-32"
-             />
-             <span className="text-muted-foreground text-sm">to</span>
-             <Input
-               type="date"
-               value={filters.toDate}
-               onChange={(e) => setFilters({ ...filters, toDate: e.target.value })}
-               className="h-9 w-32"
-             />
+           {/* Row 2: Date Range + Checkboxes + Button */}
+           <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-border">
+             <div className="flex items-center gap-2">
+               <span className="text-xs text-muted-foreground font-medium">Date:</span>
+               <Input
+                 type="date"
+                 value={filters.fromDate}
+                 onChange={(e) => setFilters({ ...filters, fromDate: e.target.value })}
+                 className="h-8 w-32 text-sm"
+               />
+               <span className="text-muted-foreground text-xs">to</span>
+               <Input
+                 type="date"
+                 value={filters.toDate}
+                 onChange={(e) => setFilters({ ...filters, toDate: e.target.value })}
+                 className="h-8 w-32 text-sm"
+               />
+             </div>
 
-             {/* Checkboxes */}
-             <label className="flex items-center gap-1.5 text-sm cursor-pointer">
+             <div className="h-4 w-px bg-border" />
+
+             <label className="flex items-center gap-1.5 text-xs cursor-pointer">
                <Checkbox
                  checked={filters.unassigned}
                  onCheckedChange={(checked) => setFilters({ ...filters, unassigned: checked === true })}
                />
                <span className="text-muted-foreground">Unassigned</span>
              </label>
-             <label className="flex items-center gap-1.5 text-sm cursor-pointer">
+             <label className="flex items-center gap-1.5 text-xs cursor-pointer">
                <Checkbox
                  checked={filters.escalated}
                  onCheckedChange={(checked) => setFilters({ ...filters, escalated: checked === true })}
                />
                <span className="text-muted-foreground">Escalated</span>
              </label>
-             <label className="flex items-center gap-1.5 text-sm cursor-pointer">
+             <label className="flex items-center gap-1.5 text-xs cursor-pointer">
                <Checkbox
                  checked={filters.slaBreached}
                  onCheckedChange={(checked) => setFilters({ ...filters, slaBreached: checked === true })}
@@ -136,10 +134,12 @@ import { PageHeader } from "@/components/shared/PageHeader";
                <span className="text-warning">SLA Breached</span>
              </label>
 
-             <button className="btn-primary btn-sm px-4 h-9">
-               <Filter className="h-4 w-4 mr-1" />
-               Filter
-             </button>
+             <div className="ml-auto">
+               <button className="btn-primary btn-sm px-4 h-8 text-xs">
+                 <Filter className="h-3.5 w-3.5 mr-1" />
+                 Apply Filters
+               </button>
+             </div>
            </div>
          </div>
        </div>
