@@ -12,6 +12,8 @@ export default function IssueCategories() {
     <div className="space-y-6">
       <PageHeader
         title="Issue Categories"
+        backLink="/support"
+        backLabel="Back to Support"
         actions={
           <button 
             onClick={() => navigate("/support/categories/new")}
