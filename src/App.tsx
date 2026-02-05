@@ -81,7 +81,9 @@ const App = () => (
                <Route path="/points" element={<Points />} />
                <Route path="/feedbacks" element={<Feedbacks />} />
                <Route path="/security" element={<Security />} />
-               <Route path="/settings" element={<Settings />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/settings/users/new" element={<Settings />} />
+              <Route path="/settings/users/:id/edit" element={<Settings />} />
             </Route>
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
