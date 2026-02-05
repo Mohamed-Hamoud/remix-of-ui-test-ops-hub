@@ -28,11 +28,19 @@ import BranchDetail from "./pages/BranchDetail";
  import Branches from "./pages/Branches";
  import RestaurantApp from "./pages/RestaurantApp";
  import Points from "./pages/Points";
- import NotFound from "./pages/NotFound";
- import Promotions from "./pages/Promotions";
- import Evaluations from "./pages/Evaluations";
- import VoucherForm from "./pages/VoucherForm";
- import VoucherDetail from "./pages/VoucherDetail";
+  import NotFound from "./pages/NotFound";
+  import Promotions from "./pages/Promotions";
+  import Evaluations from "./pages/Evaluations";
+  import VoucherForm from "./pages/VoucherForm";
+  import VoucherDetail from "./pages/VoucherDetail";
+  import SupportTeams from "./pages/support/SupportTeams";
+  import IssueCategories from "./pages/support/IssueCategories";
+  import IssueCategoryForm from "./pages/support/IssueCategoryForm";
+  import SLAPolicies from "./pages/support/SLAPolicies";
+  import SLAPolicyForm from "./pages/support/SLAPolicyForm";
+  import CannedResponses from "./pages/support/CannedResponses";
+  import CannedResponseForm from "./pages/support/CannedResponseForm";
+  import SupportAnalytics from "./pages/support/SupportAnalytics";
 
  const queryClient = new QueryClient({
    defaultOptions: {
