@@ -29,6 +29,8 @@ export default function SupportAnalytics() {
         <PageHeader
           title="Support Analytics"
           subtitle="Last 30 Days"
+          backLink="/support"
+          backLabel="Back to Support"
         />
         <div className="flex items-center gap-3">
           <button className="text-sm font-medium text-muted-foreground hover:text-foreground">Dashboard</button>

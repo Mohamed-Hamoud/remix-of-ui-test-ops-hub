@@ -25,6 +25,8 @@ export default function SLAPolicies() {
     <div className="space-y-6">
       <PageHeader
         title="SLA Policies"
+        backLink="/support"
+        backLabel="Back to Support"
         actions={
           <button 
             onClick={() => navigate("/support/sla/new")}
