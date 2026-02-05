@@ -35,21 +35,26 @@ import { PageHeader } from "@/components/shared/PageHeader";
          backLabel="Support"
       />
  
-       {/* Filters Card */}
-       <div className="rounded-xl border border-border bg-card">
-         <div className="px-6 py-4 border-b border-border bg-muted/30 flex items-center gap-2">
-           <Filter className="h-4 w-4 text-muted-foreground" />
-           <h2 className="section-title">Filters</h2>
-         </div>
-         <div className="p-6">
-         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-           {/* Status */}
-           <div className="space-y-2">
-               <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Status</Label>
+       {/* Filters Card - Compact */}
+       <div className="rounded-xl border border-border bg-card card-shadow">
+         <div className="p-4">
+           <div className="flex flex-wrap items-end gap-3">
+             {/* Search */}
+             <div className="flex-1 min-w-[200px] max-w-sm relative">
+               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+               <Input
+                 placeholder="Search tickets..."
+                 value={filters.search}
+                 onChange={(e) => setFilters({ ...filters, search: e.target.value })}
+                 className="pl-9 h-9"
+               />
+             </div>
+
+             {/* Status */}
              <select
                value={filters.status}
                onChange={(e) => setFilters({ ...filters, status: e.target.value })}
-              className="w-full h-10 px-3 rounded-md border border-input bg-background text-foreground"
+               className="h-9 px-3 rounded-md border border-input bg-background text-foreground text-sm"
              >
                <option value="all">All Statuses</option>
                <option value="open">Open</option>
@@ -57,15 +62,12 @@ import { PageHeader } from "@/components/shared/PageHeader";
                <option value="resolved">Resolved</option>
                <option value="closed">Closed</option>
              </select>
-           </div>
- 
-           {/* Priority */}
-           <div className="space-y-2">
-               <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Priority</Label>
+
+             {/* Priority */}
              <select
                value={filters.priority}
                onChange={(e) => setFilters({ ...filters, priority: e.target.value })}
-              className="w-full h-10 px-3 rounded-md border border-input bg-background text-foreground"
+               className="h-9 px-3 rounded-md border border-input bg-background text-foreground text-sm"
              >
                <option value="all">All Priorities</option>
                <option value="low">Low</option>
@@ -73,15 +75,12 @@ import { PageHeader } from "@/components/shared/PageHeader";
                <option value="high">High</option>
                <option value="urgent">Urgent</option>
              </select>
-           </div>
- 
-           {/* Category */}
-           <div className="space-y-2">
-               <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Category</Label>
+
+             {/* Category */}
              <select
                value={filters.category}
                onChange={(e) => setFilters({ ...filters, category: e.target.value })}
-              className="w-full h-10 px-3 rounded-md border border-input bg-background text-foreground"
+               className="h-9 px-3 rounded-md border border-input bg-background text-foreground text-sm"
              >
                <option value="all">All Categories</option>
                <option value="order">Order Issues</option>
@@ -89,81 +88,60 @@ import { PageHeader } from "@/components/shared/PageHeader";
                <option value="delivery">Delivery</option>
                <option value="general">General</option>
              </select>
-           </div>
- 
-           {/* Agent */}
-           <div className="space-y-2">
-               <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Agent</Label>
+
+             {/* Agent */}
              <select
                value={filters.agent}
                onChange={(e) => setFilters({ ...filters, agent: e.target.value })}
-              className="w-full h-10 px-3 rounded-md border border-input bg-background text-foreground"
+               className="h-9 px-3 rounded-md border border-input bg-background text-foreground text-sm"
              >
                <option value="all">All Agents</option>
              </select>
-           </div>
- 
-           {/* From Date */}
-           <div className="space-y-2">
-               <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">From Date</Label>
+
+             {/* Date Range */}
              <Input
                type="date"
                value={filters.fromDate}
                onChange={(e) => setFilters({ ...filters, fromDate: e.target.value })}
+               className="h-9 w-32"
              />
-           </div>
- 
-           {/* To Date */}
-           <div className="space-y-2">
-               <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">To Date</Label>
+             <span className="text-muted-foreground text-sm">to</span>
              <Input
                type="date"
                value={filters.toDate}
                onChange={(e) => setFilters({ ...filters, toDate: e.target.value })}
+               className="h-9 w-32"
              />
-           </div>
-         </div>
- 
-         {/* Search and Checkboxes */}
-           <div className="mt-6 pt-6 border-t border-border flex flex-col gap-4 sm:flex-row sm:items-center">
-             <div className="flex-1 relative">
-               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-             <Input
-               placeholder="Search by ticket #, subject, phone..."
-               value={filters.search}
-               onChange={(e) => setFilters({ ...filters, search: e.target.value })}
-                 className="pl-9"
-             />
-           </div>
-           <div className="flex items-center gap-4">
-               <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer hover:text-primary transition-colors">
+
+             {/* Checkboxes */}
+             <label className="flex items-center gap-1.5 text-sm cursor-pointer">
                <Checkbox
                  checked={filters.unassigned}
                  onCheckedChange={(checked) => setFilters({ ...filters, unassigned: checked === true })}
                />
-               Unassigned
+               <span className="text-muted-foreground">Unassigned</span>
              </label>
-               <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer hover:text-primary transition-colors">
+             <label className="flex items-center gap-1.5 text-sm cursor-pointer">
                <Checkbox
                  checked={filters.escalated}
                  onCheckedChange={(checked) => setFilters({ ...filters, escalated: checked === true })}
                />
-               Escalated
+               <span className="text-muted-foreground">Escalated</span>
              </label>
-               <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer hover:text-warning transition-colors">
+             <label className="flex items-center gap-1.5 text-sm cursor-pointer">
                <Checkbox
                  checked={filters.slaBreached}
                  onCheckedChange={(checked) => setFilters({ ...filters, slaBreached: checked === true })}
                />
-               SLA Breached
+               <span className="text-warning">SLA Breached</span>
              </label>
-               <button className="px-4 py-2 text-sm font-medium rounded-lg bg-secondary text-secondary-foreground hover:bg-secondary/80 flex items-center gap-2">
-                 <Filter className="h-4 w-4" />
-                 Apply
+
+             <button className="btn-primary btn-sm px-4 h-9">
+               <Filter className="h-4 w-4 mr-1" />
+               Filter
              </button>
            </div>
          </div>
-       </div>
        </div>
  
        {/* Tickets Table */}
