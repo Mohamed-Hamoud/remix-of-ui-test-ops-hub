@@ -79,9 +79,20 @@ const App = () => (
              <Route path="/customers" element={<Customers />} />
              <Route path="/customers/:id" element={<CustomerDetail />} />
               <Route path="/evaluations" element={<Evaluations />} />
-             <Route path="/support" element={<Support />} />
-              <Route path="/support/tickets" element={<SupportTickets />} />
-              <Route path="/support/settings" element={<SupportSettings />} />
+               <Route path="/support" element={<Support />} />
+               <Route path="/support/tickets" element={<SupportTickets />} />
+               <Route path="/support/teams" element={<SupportTeams />} />
+               <Route path="/support/categories" element={<IssueCategories />} />
+               <Route path="/support/categories/new" element={<IssueCategoryForm />} />
+               <Route path="/support/categories/:id/edit" element={<IssueCategoryForm />} />
+               <Route path="/support/sla" element={<SLAPolicies />} />
+               <Route path="/support/sla/new" element={<SLAPolicyForm />} />
+               <Route path="/support/sla/:id/edit" element={<SLAPolicyForm />} />
+               <Route path="/support/canned-responses" element={<CannedResponses />} />
+               <Route path="/support/canned-responses/new" element={<CannedResponseForm />} />
+               <Route path="/support/canned-responses/:id/edit" element={<CannedResponseForm />} />
+               <Route path="/support/analytics" element={<SupportAnalytics />} />
+               <Route path="/support/settings" element={<SupportSettings />} />
               <Route path="/branches" element={<Branches />} />
             <Route path="/branches/:id" element={<BranchDetail />} />
               <Route path="/restaurant-app" element={<RestaurantApp />} />

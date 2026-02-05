@@ -55,14 +55,14 @@
   */
  
  const quickNavItems = [
-   { icon: Ticket, label: "Tickets", color: "bg-primary/10 text-primary", link: "/support/tickets" },
-   { icon: Users, label: "Teams", color: "bg-secondary text-secondary-foreground", link: "/support/settings" },
-   { icon: Grid3X3, label: "Categories", color: "bg-accent text-accent-foreground", link: "/support/settings" },
-   { icon: ShieldCheck, label: "SLA Policies", color: "bg-muted text-muted-foreground", link: "/support/settings" },
-   { icon: MessageSquare, label: "Canned Responses", color: "bg-primary/10 text-primary", link: "/support/settings" },
-   { icon: HelpCircle, label: "Help Center", color: "bg-secondary text-secondary-foreground", link: "/support/settings" },
-   { icon: BarChart3, label: "Analytics", color: "bg-accent text-accent-foreground", link: "/support/tickets" },
-   { icon: Settings, label: "Settings", color: "bg-muted text-muted-foreground", link: "/support/settings" },
+    { icon: Ticket, label: "Tickets", color: "bg-primary/10 text-primary", link: "/support/tickets" },
+    { icon: Users, label: "Teams", color: "bg-secondary text-secondary-foreground", link: "/support/teams" },
+    { icon: Grid3X3, label: "Categories", color: "bg-accent text-accent-foreground", link: "/support/categories" },
+    { icon: ShieldCheck, label: "SLA Policies", color: "bg-muted text-muted-foreground", link: "/support/sla" },
+    { icon: MessageSquare, label: "Canned Responses", color: "bg-primary/10 text-primary", link: "/support/canned-responses" },
+    { icon: HelpCircle, label: "Help Center", color: "bg-secondary text-secondary-foreground", link: "/support/help-center" },
+    { icon: BarChart3, label: "Analytics", color: "bg-accent text-accent-foreground", link: "/support/analytics" },
+    { icon: Settings, label: "Settings", color: "bg-muted text-muted-foreground", link: "/support/settings" },
  ];
  
  const statsData = [
