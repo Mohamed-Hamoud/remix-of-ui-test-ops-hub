@@ -43,44 +43,46 @@ export default function SupportAnalytics() {
       <TabNavigation tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
 
       {activeTab === "overview" && (
-        <div className="space-y-6">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="space-y-4">
+          {/* Stats Row - Compact */}
+          <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
             {stats.map((s, i) => (
-              <div key={i} className="rounded-xl border border-border bg-card p-6 card-shadow flex flex-col gap-1">
-                <span className={`text-4xl font-bold ${s.color}`}>{s.value}</span>
-                <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider">{s.label}</span>
+              <div key={i} className="rounded-lg border border-border bg-card p-4 card-shadow">
+                <span className={`text-2xl font-bold ${s.color}`}>{s.value}</span>
+                <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mt-1">{s.label}</p>
               </div>
             ))}
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-2">
-            <div className="rounded-xl border border-border bg-card p-6 card-shadow min-h-[200px]">
-              <h3 className="text-sm font-bold text-foreground mb-4">Ticket Volume Trend</h3>
-              <div className="h-32 flex items-center justify-center text-muted-foreground text-sm">Chart placeholder</div>
+          {/* Charts Grid - Compact */}
+          <div className="grid gap-4 lg:grid-cols-3">
+            <div className="rounded-lg border border-border bg-card p-4 card-shadow">
+              <h3 className="text-xs font-bold text-foreground mb-2">Ticket Volume Trend</h3>
+              <div className="h-24 flex items-center justify-center text-muted-foreground text-xs">Chart placeholder</div>
             </div>
-            <div className="rounded-xl border border-border bg-card p-6 card-shadow min-h-[200px]">
-              <h3 className="text-sm font-bold text-foreground mb-4">By Status</h3>
-              <div className="h-32 flex items-center justify-center text-muted-foreground text-sm">Chart placeholder</div>
+            <div className="rounded-lg border border-border bg-card p-4 card-shadow">
+              <h3 className="text-xs font-bold text-foreground mb-2">By Status</h3>
+              <div className="h-24 flex items-center justify-center text-muted-foreground text-xs">Chart placeholder</div>
             </div>
-            <div className="rounded-xl border border-border bg-card p-6 card-shadow min-h-[200px]">
-              <h3 className="text-sm font-bold text-foreground mb-4">By Priority</h3>
-              <div className="h-32 flex items-center justify-center text-muted-foreground text-sm">Chart placeholder</div>
+            <div className="rounded-lg border border-border bg-card p-4 card-shadow">
+              <h3 className="text-xs font-bold text-foreground mb-2">By Priority</h3>
+              <div className="h-24 flex items-center justify-center text-muted-foreground text-xs">Chart placeholder</div>
             </div>
-            <div className="rounded-xl border border-border bg-card p-6 card-shadow min-h-[200px]">
-              <h3 className="text-sm font-bold text-foreground mb-4">Top Categories</h3>
-              <p className="text-sm text-muted-foreground text-center py-8">No category data</p>
+            <div className="rounded-lg border border-border bg-card p-4 card-shadow">
+              <h3 className="text-xs font-bold text-foreground mb-2">Top Categories</h3>
+              <p className="text-xs text-muted-foreground text-center py-6">No category data</p>
             </div>
-            <div className="rounded-xl border border-border bg-card p-6 card-shadow min-h-[200px]">
-              <h3 className="text-sm font-bold text-foreground mb-4">By Source</h3>
-              <div className="h-32 flex items-center justify-center text-muted-foreground text-sm">Chart placeholder</div>
+            <div className="rounded-lg border border-border bg-card p-4 card-shadow">
+              <h3 className="text-xs font-bold text-foreground mb-2">By Source</h3>
+              <div className="h-24 flex items-center justify-center text-muted-foreground text-xs">Chart placeholder</div>
             </div>
-            <div className="space-y-6">
-              <div className="rounded-xl border border-border bg-card p-6 card-shadow flex items-center justify-between">
-                <h3 className="text-sm font-bold text-foreground">Hourly Distribution</h3>
-                <span className="text-[10px] text-muted-foreground">Peak hours insight</span>
+            <div className="space-y-3">
+              <div className="rounded-lg border border-border bg-card p-4 card-shadow flex items-center justify-between">
+                <h3 className="text-xs font-bold text-foreground">Hourly Distribution</h3>
+                <span className="text-[10px] text-muted-foreground">Peak hours</span>
               </div>
-              <div className="rounded-xl border border-border bg-card p-6 card-shadow flex items-center justify-between">
-                <h3 className="text-sm font-bold text-foreground">Daily Distribution</h3>
+              <div className="rounded-lg border border-border bg-card p-4 card-shadow flex items-center justify-between">
+                <h3 className="text-xs font-bold text-foreground">Daily Distribution</h3>
                 <span className="text-[10px] text-muted-foreground">Busiest days</span>
               </div>
             </div>
