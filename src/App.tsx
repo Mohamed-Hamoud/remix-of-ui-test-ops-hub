@@ -28,11 +28,19 @@ import BranchDetail from "./pages/BranchDetail";
  import Branches from "./pages/Branches";
  import RestaurantApp from "./pages/RestaurantApp";
  import Points from "./pages/Points";
- import NotFound from "./pages/NotFound";
- import Promotions from "./pages/Promotions";
- import Evaluations from "./pages/Evaluations";
- import VoucherForm from "./pages/VoucherForm";
- import VoucherDetail from "./pages/VoucherDetail";
+  import NotFound from "./pages/NotFound";
+  import Promotions from "./pages/Promotions";
+  import Evaluations from "./pages/Evaluations";
+  import VoucherForm from "./pages/VoucherForm";
+  import VoucherDetail from "./pages/VoucherDetail";
+  import SupportTeams from "./pages/support/SupportTeams";
+  import IssueCategories from "./pages/support/IssueCategories";
+  import IssueCategoryForm from "./pages/support/IssueCategoryForm";
+  import SLAPolicies from "./pages/support/SLAPolicies";
+  import SLAPolicyForm from "./pages/support/SLAPolicyForm";
+  import CannedResponses from "./pages/support/CannedResponses";
+  import CannedResponseForm from "./pages/support/CannedResponseForm";
+  import SupportAnalytics from "./pages/support/SupportAnalytics";
 
  const queryClient = new QueryClient({
    defaultOptions: {
@@ -71,9 +79,20 @@ const App = () => (
              <Route path="/customers" element={<Customers />} />
              <Route path="/customers/:id" element={<CustomerDetail />} />
               <Route path="/evaluations" element={<Evaluations />} />
-             <Route path="/support" element={<Support />} />
-              <Route path="/support/tickets" element={<SupportTickets />} />
-              <Route path="/support/settings" element={<SupportSettings />} />
+               <Route path="/support" element={<Support />} />
+               <Route path="/support/tickets" element={<SupportTickets />} />
+               <Route path="/support/teams" element={<SupportTeams />} />
+               <Route path="/support/categories" element={<IssueCategories />} />
+               <Route path="/support/categories/new" element={<IssueCategoryForm />} />
+               <Route path="/support/categories/:id/edit" element={<IssueCategoryForm />} />
+               <Route path="/support/sla" element={<SLAPolicies />} />
+               <Route path="/support/sla/new" element={<SLAPolicyForm />} />
+               <Route path="/support/sla/:id/edit" element={<SLAPolicyForm />} />
+               <Route path="/support/canned-responses" element={<CannedResponses />} />
+               <Route path="/support/canned-responses/new" element={<CannedResponseForm />} />
+               <Route path="/support/canned-responses/:id/edit" element={<CannedResponseForm />} />
+               <Route path="/support/analytics" element={<SupportAnalytics />} />
+               <Route path="/support/settings" element={<SupportSettings />} />
               <Route path="/branches" element={<Branches />} />
             <Route path="/branches/:id" element={<BranchDetail />} />
               <Route path="/restaurant-app" element={<RestaurantApp />} />
