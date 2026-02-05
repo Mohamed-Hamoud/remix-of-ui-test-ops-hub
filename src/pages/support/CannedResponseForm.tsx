@@ -46,13 +46,13 @@ export default function CannedResponseForm() {
 
           <section className="space-y-6">
             <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground">Response Content</h3>
-            <div className="p-4 rounded-lg bg-blue-50/50 border border-blue-100 flex flex-wrap gap-x-6 gap-y-3">
-              <div className="text-[13px] text-blue-600 font-medium">
-                Available Variables: <span className="text-blue-500 font-normal">You can use these placeholders in your responses. They will be replaced with actual values when used.</span>
+            <div className="p-4 rounded-lg bg-info/10 border border-info/20 flex flex-wrap gap-x-6 gap-y-3">
+              <div className="text-[13px] text-info font-medium">
+                Available Variables: <span className="text-info/80 font-normal">You can use these placeholders in your responses. They will be replaced with actual values when used.</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {variables.map(v => (
-                  <code key={v} className="px-2 py-0.5 rounded border border-blue-200 bg-white text-[10px] text-blue-600 font-bold">
+                  <code key={v} className="px-2 py-0.5 rounded border border-info/30 bg-card text-[10px] text-info font-bold">
                     {"{{"}{v}{"}}"}
                   </code>
                 ))}

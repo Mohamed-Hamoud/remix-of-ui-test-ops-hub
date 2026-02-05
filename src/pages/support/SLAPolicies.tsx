@@ -73,7 +73,7 @@ export default function SLAPolicies() {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 text-[10px] font-bold border border-blue-100 uppercase">
+                    <span className="px-2 py-0.5 rounded-full bg-info/10 text-info text-[10px] font-bold border border-info/20 uppercase">
                       {policy.businessHours ? "YES" : "NO"}
                     </span>
                   </td>
