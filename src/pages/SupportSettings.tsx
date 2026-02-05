@@ -1,345 +1,283 @@
- import { useState } from "react";
- import { Switch } from "@/components/ui/switch";
- import { Input } from "@/components/ui/input";
- import { Label } from "@/components/ui/label";
+import { useState } from "react";
+import { Switch } from "@/components/ui/switch";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { PageHeader } from "@/components/shared/PageHeader";
- import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
- 
- /**
-  * Support Settings Page
-  * Organized settings with consistent card heights and visual hierarchy
-  */
- 
- export default function SupportSettings() {
-   const [settings, setSettings] = useState({
-     // Customer Email Notifications
-     customerEmailEnabled: true,
-     ticketCreated: true,
-     agentReply: true,
-     ticketResolved: true,
-     ticketClosed: true,
-     // Agent Email Notifications
-     agentEmailEnabled: true,
-     newTicket: true,
-     customerReply: true,
-     slaWarning: true,
-     escalation: true,
-     // Customer Satisfaction Surveys
-     surveysEnabled: true,
-     autoSendSurveys: true,
-     delayHours: 24,
-     sendReminder: true,
-     reminderDays: 3,
-     expiryDays: 7,
-     // Real-time Notifications
-     realtimeEnabled: true,
-     // Scheduled Reports
-     scheduledReportsEnabled: true,
-     dailyReport: true,
-     dailyReportTime: "07:00",
-     weeklyReport: true,
-     weeklyReportDay: "Monday",
-     monthlyReport: true,
-     // AI Assistant Settings
-     aiEnabled: true,
-     autoSuggest: true,
-     sentimentAnalysis: true,
-     // Test Email
-     testEmail: "admin@example.com",
-   });
- 
-   const ToggleRow = ({ label, checked, onChange }: { label: string; checked: boolean; onChange: (v: boolean) => void }) => (
-    <div className="flex items-center justify-between py-2.5">
-      <span className="text-sm text-foreground leading-tight">{label}</span>
-       <Switch checked={checked} onCheckedChange={onChange} />
-     </div>
-   );
- 
-  const NestedToggle = ({ label, checked, onChange }: { label: string; checked: boolean; onChange: (v: boolean) => void }) => (
-    <div className="flex items-center justify-between py-2">
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Mail, Bell, Star, Zap, Calendar, Bot, Send, Save, Users, MessageSquare } from "lucide-react";
+
+export default function SupportSettings() {
+  const [settings, setSettings] = useState({
+    customerEmailEnabled: true,
+    ticketCreated: true,
+    agentReply: true,
+    ticketResolved: true,
+    ticketClosed: true,
+    agentEmailEnabled: true,
+    newTicket: true,
+    customerReply: true,
+    slaWarning: true,
+    escalation: true,
+    surveysEnabled: true,
+    autoSendSurveys: true,
+    delayHours: 24,
+    sendReminder: true,
+    reminderDays: 3,
+    expiryDays: 7,
+    realtimeEnabled: true,
+    scheduledReportsEnabled: true,
+    dailyReport: true,
+    dailyReportTime: "07:00",
+    weeklyReport: true,
+    weeklyReportDay: "Monday",
+    monthlyReport: true,
+    aiEnabled: true,
+    autoSuggest: true,
+    sentimentAnalysis: true,
+    testEmail: "admin@example.com",
+  });
+
+  const ToggleItem = ({ label, description, checked, onChange }: { 
+    label: string; 
+    description?: string;
+    checked: boolean; 
+    onChange: (v: boolean) => void 
+  }) => (
+    <div className="flex items-start justify-between gap-4 py-3">
+      <div className="space-y-0.5">
+        <span className="text-sm font-medium text-foreground">{label}</span>
+        {description && <p className="text-xs text-muted-foreground">{description}</p>}
+      </div>
+      <Switch checked={checked} onCheckedChange={onChange} />
+    </div>
+  );
+
+  const NestedToggle = ({ label, checked, onChange }: { 
+    label: string; 
+    checked: boolean; 
+    onChange: (v: boolean) => void 
+  }) => (
+    <div className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-muted/30 transition-colors">
       <span className="text-sm text-muted-foreground">{label}</span>
       <Switch checked={checked} onCheckedChange={onChange} />
     </div>
   );
 
-  const SectionCard = ({ title, children, className = "" }: { title: string; children: React.ReactNode; className?: string }) => (
-    <div className={`rounded-xl border border-border bg-card ${className}`}>
-      <div className="px-5 py-4 border-b border-border bg-muted/30">
-        <h3 className="text-sm font-semibold text-foreground">{title}</h3>
-      </div>
-      <div className="p-5">{children}</div>
-    </div>
-  );
-
-   return (
-     <div className="space-y-6">
-       {/* Header */}
+  return (
+    <div className="space-y-6">
       <PageHeader
         title="Support Settings"
         subtitle="Configure notification preferences and support system settings"
-         backLink="/support"
-         backLabel="Support"
+        backLink="/support"
+        backLabel="Support"
+        actions={
+          <button className="btn-primary flex items-center gap-2">
+            <Save className="h-4 w-4" />
+            Save Changes
+          </button>
+        }
       />
- 
-      {/* Email Notifications Row */}
-      <div className="grid gap-6 lg:grid-cols-2">
-        <SectionCard title="Customer Email Notifications">
-          <div className="space-y-1">
-            <ToggleRow
-              label="Enable customer email notifications"
+
+      {/* Notification Settings */}
+      <div className="grid gap-4 lg:grid-cols-2">
+        {/* Customer Notifications */}
+        <div className="rounded-xl border border-border bg-card card-shadow overflow-hidden">
+          <div className="px-5 py-4 border-b border-border bg-gradient-to-r from-primary/5 to-transparent flex items-center gap-3">
+            <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center">
+              <Mail className="h-4 w-4 text-primary" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-foreground">Customer Notifications</h3>
+              <p className="text-xs text-muted-foreground">Email alerts sent to customers</p>
+            </div>
+          </div>
+          <div className="p-4">
+            <ToggleItem
+              label="Enable customer emails"
               checked={settings.customerEmailEnabled}
               onChange={(v) => setSettings({ ...settings, customerEmailEnabled: v })}
             />
-            <div className="pl-4 border-l-2 border-border ml-2 mt-2">
-              <NestedToggle
-                label="Ticket created confirmation"
-                checked={settings.ticketCreated}
-                onChange={(v) => setSettings({ ...settings, ticketCreated: v })}
-              />
-              <NestedToggle
-                label="Agent reply notification"
-                checked={settings.agentReply}
-                onChange={(v) => setSettings({ ...settings, agentReply: v })}
-              />
-              <NestedToggle
-                label="Ticket resolved notification"
-                checked={settings.ticketResolved}
-                onChange={(v) => setSettings({ ...settings, ticketResolved: v })}
-              />
-              <NestedToggle
-                label="Ticket closed notification"
-                checked={settings.ticketClosed}
-                onChange={(v) => setSettings({ ...settings, ticketClosed: v })}
-              />
+            <div className="mt-2 space-y-1 border-l-2 border-primary/20 ml-1">
+              <NestedToggle label="Ticket created confirmation" checked={settings.ticketCreated} onChange={(v) => setSettings({ ...settings, ticketCreated: v })} />
+              <NestedToggle label="Agent reply notification" checked={settings.agentReply} onChange={(v) => setSettings({ ...settings, agentReply: v })} />
+              <NestedToggle label="Ticket resolved notification" checked={settings.ticketResolved} onChange={(v) => setSettings({ ...settings, ticketResolved: v })} />
+              <NestedToggle label="Ticket closed notification" checked={settings.ticketClosed} onChange={(v) => setSettings({ ...settings, ticketClosed: v })} />
             </div>
           </div>
-        </SectionCard>
+        </div>
 
-        <SectionCard title="Agent Email Notifications">
-          <div className="space-y-1">
-            <ToggleRow
-              label="Enable agent email notifications"
+        {/* Agent Notifications */}
+        <div className="rounded-xl border border-border bg-card card-shadow overflow-hidden">
+          <div className="px-5 py-4 border-b border-border bg-gradient-to-r from-info/5 to-transparent flex items-center gap-3">
+            <div className="h-9 w-9 rounded-lg bg-info/10 flex items-center justify-center">
+              <Users className="h-4 w-4 text-info" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-foreground">Agent Notifications</h3>
+              <p className="text-xs text-muted-foreground">Email alerts sent to support agents</p>
+            </div>
+          </div>
+          <div className="p-4">
+            <ToggleItem
+              label="Enable agent emails"
               checked={settings.agentEmailEnabled}
               onChange={(v) => setSettings({ ...settings, agentEmailEnabled: v })}
             />
-            <div className="pl-4 border-l-2 border-border ml-2 mt-2">
-              <NestedToggle
-                label="New ticket notification"
-                checked={settings.newTicket}
-                onChange={(v) => setSettings({ ...settings, newTicket: v })}
-              />
-              <NestedToggle
-                label="Customer reply notification"
-                checked={settings.customerReply}
-                onChange={(v) => setSettings({ ...settings, customerReply: v })}
-              />
-              <NestedToggle
-                label="SLA warning notification"
-                checked={settings.slaWarning}
-                onChange={(v) => setSettings({ ...settings, slaWarning: v })}
-              />
-              <NestedToggle
-                label="Escalation notification"
-                checked={settings.escalation}
-                onChange={(v) => setSettings({ ...settings, escalation: v })}
-              />
+            <div className="mt-2 space-y-1 border-l-2 border-info/20 ml-1">
+              <NestedToggle label="New ticket notification" checked={settings.newTicket} onChange={(v) => setSettings({ ...settings, newTicket: v })} />
+              <NestedToggle label="Customer reply notification" checked={settings.customerReply} onChange={(v) => setSettings({ ...settings, customerReply: v })} />
+              <NestedToggle label="SLA warning notification" checked={settings.slaWarning} onChange={(v) => setSettings({ ...settings, slaWarning: v })} />
+              <NestedToggle label="Escalation notification" checked={settings.escalation} onChange={(v) => setSettings({ ...settings, escalation: v })} />
             </div>
           </div>
-        </SectionCard>
-      </div>
-
-      {/* Surveys & Real-time Row */}
-      <div className="grid gap-6 lg:grid-cols-2">
-        <SectionCard title="Customer Satisfaction Surveys">
-          <div className="space-y-3">
-            <ToggleRow
-              label="Enable satisfaction surveys"
-              checked={settings.surveysEnabled}
-              onChange={(v) => setSettings({ ...settings, surveysEnabled: v })}
-            />
-            <ToggleRow
-              label="Auto-send surveys after ticket resolution"
-              checked={settings.autoSendSurveys}
-              onChange={(v) => setSettings({ ...settings, autoSendSurveys: v })}
-            />
-            <div className="space-y-1.5">
-              <Label className="text-xs text-muted-foreground">Delay before sending (hours)</Label>
-              <Input
-                type="number"
-                value={settings.delayHours}
-                onChange={(e) => setSettings({ ...settings, delayHours: parseInt(e.target.value) || 0 })}
-                className="w-24 h-9"
-              />
-            </div>
-            <ToggleRow
-              label="Send reminder for incomplete surveys"
-              checked={settings.sendReminder}
-              onChange={(v) => setSettings({ ...settings, sendReminder: v })}
-            />
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-1.5">
-                <Label className="text-xs text-muted-foreground">Reminder after (days)</Label>
-                <Input
-                  type="number"
-                  value={settings.reminderDays}
-                  onChange={(e) => setSettings({ ...settings, reminderDays: parseInt(e.target.value) || 0 })}
-                  className="h-9"
-                />
-              </div>
-              <div className="space-y-1.5">
-                <Label className="text-xs text-muted-foreground">Survey expires after (days)</Label>
-                <Input
-                  type="number"
-                  value={settings.expiryDays}
-                  onChange={(e) => setSettings({ ...settings, expiryDays: parseInt(e.target.value) || 0 })}
-                  className="h-9"
-                />
-              </div>
-            </div>
-          </div>
-        </SectionCard>
-
-        <div className="space-y-6">
-          <SectionCard title="Real-time Notifications">
-            <div className="space-y-3">
-             <ToggleRow
-                label="Enable real-time notifications (WebSocket)"
-                checked={settings.realtimeEnabled}
-                onChange={(v) => setSettings({ ...settings, realtimeEnabled: v })}
-             />
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Enables instant notifications for new tickets and replies without page refresh.
-              </p>
-           </div>
-          </SectionCard>
-
-          <SectionCard title="AI Assistant Settings">
-            <div className="space-y-1">
-             <ToggleRow
-                label="Enable AI assistant features"
-                checked={settings.aiEnabled}
-                onChange={(v) => setSettings({ ...settings, aiEnabled: v })}
-             />
-              <div className="pl-4 border-l-2 border-border ml-2 mt-2">
-                <NestedToggle
-                  label="Auto-suggest responses to agents"
-                  checked={settings.autoSuggest}
-                  onChange={(v) => setSettings({ ...settings, autoSuggest: v })}
-                />
-                <NestedToggle
-                  label="Enable sentiment analysis on messages"
-                  checked={settings.sentimentAnalysis}
-                  onChange={(v) => setSettings({ ...settings, sentimentAnalysis: v })}
-                />
-              </div>
-            </div>
-          </SectionCard>
         </div>
       </div>
 
-      {/* Scheduled Reports - Full Width */}
-      <SectionCard title="Scheduled Reports">
-        <div className="space-y-4">
-          <ToggleRow
-            label="Enable scheduled reports"
-            checked={settings.scheduledReportsEnabled}
-            onChange={(v) => setSettings({ ...settings, scheduledReportsEnabled: v })}
-          />
-          <div className="grid gap-6 md:grid-cols-3">
-            {/* Daily Report */}
-            <div className="rounded-lg border border-border bg-muted/20 p-4 space-y-3">
-              <ToggleRow
-                label="Daily report"
-                checked={settings.dailyReport}
-                onChange={(v) => setSettings({ ...settings, dailyReport: v })}
-              />
-              <div className="flex items-center gap-3">
-                <Label className="text-xs text-muted-foreground whitespace-nowrap">Send at</Label>
-                <Input
-                  type="time"
-                  value={settings.dailyReportTime}
-                  onChange={(e) => setSettings({ ...settings, dailyReportTime: e.target.value })}
-                  className="h-9 w-28"
-                />
+      {/* Features Grid */}
+      <div className="grid gap-4 lg:grid-cols-3">
+        {/* Customer Satisfaction */}
+        <div className="rounded-xl border border-border bg-card card-shadow overflow-hidden">
+          <div className="px-5 py-4 border-b border-border bg-gradient-to-r from-warning/5 to-transparent flex items-center gap-3">
+            <div className="h-9 w-9 rounded-lg bg-warning/10 flex items-center justify-center">
+              <Star className="h-4 w-4 text-warning" />
+            </div>
+            <h3 className="text-sm font-bold text-foreground">Satisfaction Surveys</h3>
+          </div>
+          <div className="p-4 space-y-3">
+            <ToggleItem label="Enable surveys" checked={settings.surveysEnabled} onChange={(v) => setSettings({ ...settings, surveysEnabled: v })} />
+            <ToggleItem label="Auto-send after resolution" checked={settings.autoSendSurveys} onChange={(v) => setSettings({ ...settings, autoSendSurveys: v })} />
+            <div className="grid grid-cols-3 gap-2">
+              <div className="space-y-1">
+                <Label className="text-[10px] text-muted-foreground uppercase">Delay (hrs)</Label>
+                <Input type="number" value={settings.delayHours} onChange={(e) => setSettings({ ...settings, delayHours: parseInt(e.target.value) || 0 })} className="h-8 text-sm" />
+              </div>
+              <div className="space-y-1">
+                <Label className="text-[10px] text-muted-foreground uppercase">Remind (days)</Label>
+                <Input type="number" value={settings.reminderDays} onChange={(e) => setSettings({ ...settings, reminderDays: parseInt(e.target.value) || 0 })} className="h-8 text-sm" />
+              </div>
+              <div className="space-y-1">
+                <Label className="text-[10px] text-muted-foreground uppercase">Expire (days)</Label>
+                <Input type="number" value={settings.expiryDays} onChange={(e) => setSettings({ ...settings, expiryDays: parseInt(e.target.value) || 0 })} className="h-8 text-sm" />
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* Weekly Report */}
-            <div className="rounded-lg border border-border bg-muted/20 p-4 space-y-3">
-              <ToggleRow
-                label="Weekly report"
-                checked={settings.weeklyReport}
-                onChange={(v) => setSettings({ ...settings, weeklyReport: v })}
-              />
-              <div className="flex items-center gap-3">
-                <Label className="text-xs text-muted-foreground whitespace-nowrap">Send on</Label>
-                <Select
-                  value={settings.weeklyReportDay}
-                  onValueChange={(v) => setSettings({ ...settings, weeklyReportDay: v })}
-                >
-                  <SelectTrigger className="h-9 w-28">
-                    <SelectValue />
-                  </SelectTrigger>
+        {/* Real-time */}
+        <div className="rounded-xl border border-border bg-card card-shadow overflow-hidden">
+          <div className="px-5 py-4 border-b border-border bg-gradient-to-r from-success/5 to-transparent flex items-center gap-3">
+            <div className="h-9 w-9 rounded-lg bg-success/10 flex items-center justify-center">
+              <Zap className="h-4 w-4 text-success" />
+            </div>
+            <h3 className="text-sm font-bold text-foreground">Real-time Notifications</h3>
+          </div>
+          <div className="p-4">
+            <ToggleItem
+              label="Enable WebSocket"
+              description="Instant notifications without page refresh"
+              checked={settings.realtimeEnabled}
+              onChange={(v) => setSettings({ ...settings, realtimeEnabled: v })}
+            />
+          </div>
+        </div>
+
+        {/* AI Assistant */}
+        <div className="rounded-xl border border-border bg-card card-shadow overflow-hidden">
+          <div className="px-5 py-4 border-b border-border bg-gradient-to-r from-accent/20 to-transparent flex items-center gap-3">
+            <div className="h-9 w-9 rounded-lg bg-accent flex items-center justify-center">
+              <Bot className="h-4 w-4 text-accent-foreground" />
+            </div>
+            <h3 className="text-sm font-bold text-foreground">AI Assistant</h3>
+          </div>
+          <div className="p-4">
+            <ToggleItem label="Enable AI features" checked={settings.aiEnabled} onChange={(v) => setSettings({ ...settings, aiEnabled: v })} />
+            <div className="mt-2 space-y-1 border-l-2 border-accent/30 ml-1">
+              <NestedToggle label="Auto-suggest responses" checked={settings.autoSuggest} onChange={(v) => setSettings({ ...settings, autoSuggest: v })} />
+              <NestedToggle label="Sentiment analysis" checked={settings.sentimentAnalysis} onChange={(v) => setSettings({ ...settings, sentimentAnalysis: v })} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Scheduled Reports */}
+      <div className="rounded-xl border border-border bg-card card-shadow overflow-hidden">
+        <div className="px-5 py-4 border-b border-border bg-gradient-to-r from-secondary/50 to-transparent flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="h-9 w-9 rounded-lg bg-secondary flex items-center justify-center">
+              <Calendar className="h-4 w-4 text-secondary-foreground" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-foreground">Scheduled Reports</h3>
+              <p className="text-xs text-muted-foreground">Automated performance reports</p>
+            </div>
+          </div>
+          <Switch checked={settings.scheduledReportsEnabled} onCheckedChange={(v) => setSettings({ ...settings, scheduledReportsEnabled: v })} />
+        </div>
+        <div className="p-4">
+          <div className="grid gap-3 md:grid-cols-3">
+            <div className="rounded-lg border border-border bg-muted/20 p-4">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-sm font-medium text-foreground">Daily Report</span>
+                <Switch checked={settings.dailyReport} onCheckedChange={(v) => setSettings({ ...settings, dailyReport: v })} />
+              </div>
+              <div className="flex items-center gap-2">
+                <Label className="text-xs text-muted-foreground">Time:</Label>
+                <Input type="time" value={settings.dailyReportTime} onChange={(e) => setSettings({ ...settings, dailyReportTime: e.target.value })} className="h-8 w-24 text-sm" />
+              </div>
+            </div>
+            <div className="rounded-lg border border-border bg-muted/20 p-4">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-sm font-medium text-foreground">Weekly Report</span>
+                <Switch checked={settings.weeklyReport} onCheckedChange={(v) => setSettings({ ...settings, weeklyReport: v })} />
+              </div>
+              <div className="flex items-center gap-2">
+                <Label className="text-xs text-muted-foreground">Day:</Label>
+                <Select value={settings.weeklyReportDay} onValueChange={(v) => setSettings({ ...settings, weeklyReportDay: v })}>
+                  <SelectTrigger className="h-8 w-24 text-sm"><SelectValue /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Monday">Monday</SelectItem>
-                    <SelectItem value="Tuesday">Tuesday</SelectItem>
-                    <SelectItem value="Wednesday">Wednesday</SelectItem>
-                    <SelectItem value="Thursday">Thursday</SelectItem>
-                    <SelectItem value="Friday">Friday</SelectItem>
-                    <SelectItem value="Saturday">Saturday</SelectItem>
-                    <SelectItem value="Sunday">Sunday</SelectItem>
+                    {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map(d => (
+                      <SelectItem key={d} value={d}>{d}</SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
             </div>
-
-            {/* Monthly Report */}
-            <div className="rounded-lg border border-border bg-muted/20 p-4 space-y-3">
-              <ToggleRow
-                label="Monthly report"
-                checked={settings.monthlyReport}
-                onChange={(v) => setSettings({ ...settings, monthlyReport: v })}
-              />
-              <p className="text-xs text-muted-foreground">Sent on 1st of each month</p>
+            <div className="rounded-lg border border-border bg-muted/20 p-4">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-sm font-medium text-foreground">Monthly Report</span>
+                <Switch checked={settings.monthlyReport} onCheckedChange={(v) => setSettings({ ...settings, monthlyReport: v })} />
+              </div>
+              <p className="text-xs text-muted-foreground">Sent on the 1st of each month</p>
             </div>
           </div>
         </div>
-      </SectionCard>
+      </div>
 
-      {/* Actions Row */}
-      <div className="grid gap-6 lg:grid-cols-2">
-        {/* Test Email */}
-        <SectionCard title="Test Email Notifications">
-          <div className="space-y-3">
-            <p className="text-xs text-muted-foreground">
-              Send a test email to verify your notification settings are working correctly.
-            </p>
-            <div className="flex items-center gap-3">
-              <Input
-                type="email"
-                value={settings.testEmail}
-                onChange={(e) => setSettings({ ...settings, testEmail: e.target.value })}
-                placeholder="admin@example.com"
-                className="flex-1 h-9"
-              />
-              <button className="px-4 py-2 h-9 text-sm font-medium rounded-lg bg-secondary text-secondary-foreground hover:bg-secondary/80 whitespace-nowrap">
-                Send Test Email
-              </button>
-            </div>
+      {/* Test Email */}
+      <div className="rounded-xl border border-border bg-card card-shadow overflow-hidden">
+        <div className="px-5 py-4 border-b border-border bg-muted/5 flex items-center gap-3">
+          <div className="h-9 w-9 rounded-lg bg-muted flex items-center justify-center">
+            <Send className="h-4 w-4 text-muted-foreground" />
           </div>
-        </SectionCard>
-
-        {/* Save Settings */}
-        <div className="rounded-xl border border-primary/20 bg-primary/5 p-5 flex items-center justify-between">
           <div>
-            <h3 className="text-sm font-semibold text-foreground">Save Changes</h3>
-            <p className="text-xs text-muted-foreground mt-1">Click to save all your settings changes</p>
+            <h3 className="text-sm font-bold text-foreground">Test Email Notifications</h3>
+            <p className="text-xs text-muted-foreground">Verify your notification settings are working</p>
           </div>
-          <button className="px-6 py-2.5 text-sm font-medium rounded-lg bg-primary text-primary-foreground hover:bg-primary/90">
-            Save Settings
+        </div>
+        <div className="p-4 flex items-center gap-3">
+          <Input
+            type="email"
+            value={settings.testEmail}
+            onChange={(e) => setSettings({ ...settings, testEmail: e.target.value })}
+            placeholder="admin@example.com"
+            className="flex-1 h-10"
+          />
+          <button className="btn-secondary px-5 h-10 flex items-center gap-2">
+            <Send className="h-4 w-4" />
+            Send Test
           </button>
         </div>
       </div>
-     </div>
-   );
- }
+    </div>
+  );
+}
