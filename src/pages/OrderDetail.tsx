@@ -42,11 +42,17 @@
    tax: "28.20",
    deliveryFee: "5.00",
    total: "503.20",
-   history: [
-     { status: "New", date: "2026-02-04 11:24", isActive: false },
-     { status: "Kitchen Accepted", date: "2026-02-04 19:04", isActive: true },
-   ],
-   status: "accepted",
+  history: [
+    { status: "New", date: "2026-02-04 11:24", color: "blue" as const },
+    { status: "Payment Confirmed", date: "2026-02-04 11:25", color: "blue" as const },
+    { status: "Ready To Prepare", date: "2026-02-04 11:26", color: "blue" as const },
+    { status: "Kitchen Accepted", date: "2026-02-04 19:04", color: "blue" as const },
+    { status: "Ready To Deliver", date: "2026-02-04 19:30", color: "blue" as const },
+    { status: "Assigning Driver", date: "2026-02-04 19:31", color: "orange" as const },
+    { status: "Delivery Picked Up", date: "2026-02-04 19:45", color: "blue" as const },
+    { status: "Completed", date: "2026-02-04 20:10", color: "green" as const, isCompleted: true },
+  ],
+  status: "accepted",
  };
  
  export default function OrderDetail() {
