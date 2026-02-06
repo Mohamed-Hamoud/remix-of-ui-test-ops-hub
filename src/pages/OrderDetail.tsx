@@ -1,11 +1,13 @@
 import { useParams } from "react-router-dom";
-import { User } from "lucide-react";
 import { OrderInfoCard } from "@/components/orders/OrderInfoCard";
 import { OrderItemCard } from "@/components/orders/OrderItemCard";
 import { OrderTotals } from "@/components/orders/OrderTotals";
 import { OrderTimeline } from "@/components/orders/OrderTimeline";
 import { OrderCustomer } from "@/components/orders/OrderCustomer";
 import { OrderStatusBanner } from "@/components/orders/OrderStatusBanner";
+import { OrderCourierDetails } from "@/components/orders/OrderCourierDetails";
+import { OrderEvaluationDetails } from "@/components/orders/OrderEvaluationDetails";
+import { OrderRefundSection } from "@/components/orders/OrderRefundSection";
 import { PageHeader } from "@/components/shared/PageHeader";
  
  // Mock order data
@@ -17,7 +19,7 @@ import { PageHeader } from "@/components/shared/PageHeader";
    gatewayFee: "16.10",
    earnPoints: "503",
    branch: "Damascus Delivery",
-   address: "No. 62 Jalan Raja Chulan",
+   address: "Menara TA One, 22, Jalan P. Ramlee, Kuala Lumpur, 50250 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia",
    customer: {
      name: "Aisyah Binti Rahman",
      phone: "+6012-345-6008",
@@ -71,9 +73,19 @@ import { PageHeader } from "@/components/shared/PageHeader";
     { status: "Completed", date: "2026-02-04 20:10", isCompleted: true },
   ],
   status: "accepted",
- };
- 
- export default function OrderDetail() {
+  courier: {
+    name: "MUHAMAD SHARIFUL AMRIE B. MOHD AFANDI",
+    phone: "60132055720",
+    receiptUrl: "https://api.grab.com/ge/rcpt/ekVVb099",
+  },
+  evaluation: {
+    foodEvaluation: "Followed Instructions",
+    driverName: "MOHD ZHARIF BIN KAUZI",
+    note: "The order took about 2 hours to arrive... It's really unbelievable",
+  },
+};
+
+export default function OrderDetail() {
    const { id } = useParams();
  
    return (
@@ -125,11 +137,8 @@ import { PageHeader } from "@/components/shared/PageHeader";
              </div>
            </div>
  
-           {/* Refund History */}
-           <div className="rounded-lg border bg-card p-4 card-shadow">
-             <h2 className="section-title">Refund History</h2>
-             <p className="mt-2 text-sm text-muted-foreground">No refunds for this order.</p>
-           </div>
+        {/* Refund History */}
+            <OrderRefundSection orderTotal={orderData.total} />
          </div>
  
          {/* Right Column */}
@@ -138,20 +147,11 @@ import { PageHeader } from "@/components/shared/PageHeader";
             <OrderCustomer {...orderData.customer} />
             <OrderTimeline events={orderData.history} />
  
-           {/* Courier Details */}
-           <div className="rounded-lg border bg-card p-4 card-shadow">
-             <h2 className="mb-4 section-title">Courier Details</h2>
-             <div className="flex items-center gap-3 text-muted-foreground">
-               <User className="h-4 w-4" />
-               <span className="text-sm italic">Courier details not available</span>
-             </div>
-           </div>
- 
-           {/* Evaluation Details */}
-           <div className="rounded-lg border bg-card p-4 card-shadow">
-             <h2 className="mb-4 section-title">Evaluation Details</h2>
-             <p className="text-sm italic text-muted-foreground">Evaluation is missing</p>
-           </div>
+          {/* Courier Details */}
+            <OrderCourierDetails {...orderData.courier} />
+
+            {/* Evaluation Details */}
+            <OrderEvaluationDetails {...orderData.evaluation} />
          </div>
        </div>
      </div>
