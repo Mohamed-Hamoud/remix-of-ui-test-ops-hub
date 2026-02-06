@@ -1,13 +1,13 @@
- import { useParams } from "react-router-dom";
- import { User } from "lucide-react";
- import { OrderInfoCard } from "@/components/orders/OrderInfoCard";
- import { OrderItemCard } from "@/components/orders/OrderItemCard";
- import { OrderTotals } from "@/components/orders/OrderTotals";
- import { OrderTimeline } from "@/components/orders/OrderTimeline";
- import { OrderLocations } from "@/components/orders/OrderLocations";
- import { OrderCustomer } from "@/components/orders/OrderCustomer";
- import { OrderStatusBanner } from "@/components/orders/OrderStatusBanner";
- import { PageHeader } from "@/components/shared/PageHeader";
+import { useParams } from "react-router-dom";
+import { User } from "lucide-react";
+import { OrderInfoCard } from "@/components/orders/OrderInfoCard";
+import { OrderItemCard } from "@/components/orders/OrderItemCard";
+import { OrderTotals } from "@/components/orders/OrderTotals";
+import { OrderTimeline } from "@/components/orders/OrderTimeline";
+import { OrderKitchenStatus } from "@/components/orders/OrderKitchenStatus";
+import { OrderCustomer } from "@/components/orders/OrderCustomer";
+import { OrderStatusBanner } from "@/components/orders/OrderStatusBanner";
+import { PageHeader } from "@/components/shared/PageHeader";
  
  // Mock order data
  const orderData = {
@@ -71,14 +71,16 @@
        <div className="grid gap-6 lg:grid-cols-3">
          {/* Left Column - Order Info & Items */}
          <div className="space-y-6 lg:col-span-2">
-           <OrderInfoCard
-             orderId={orderData.id}
-             internalId={orderData.internalId}
-             created={orderData.created}
-             extDeliveryFee={orderData.extDeliveryFee}
-             gatewayFee={orderData.gatewayFee}
-             earnPoints={orderData.earnPoints}
-           />
+            <OrderInfoCard
+              orderId={orderData.id}
+              internalId={orderData.internalId}
+              created={orderData.created}
+              extDeliveryFee={orderData.extDeliveryFee}
+              gatewayFee={orderData.gatewayFee}
+              earnPoints={orderData.earnPoints}
+              branch={orderData.branch}
+              address={orderData.address}
+            />
  
            {/* Items */}
            <div className="rounded-lg border bg-card p-4 card-shadow">
@@ -114,7 +116,10 @@
  
          {/* Right Column */}
          <div className="space-y-6">
-           <OrderLocations branch={orderData.branch} address={orderData.address} />
+            <OrderKitchenStatus 
+              status="Kitchen Accepted" 
+              timestamp="2026-02-04 19:04" 
+            />
            <OrderCustomer {...orderData.customer} />
            <OrderStatusBanner status={orderData.status} />
            <OrderTimeline events={orderData.history} />
