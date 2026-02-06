@@ -1,12 +1,14 @@
- import { User, Phone, Smartphone } from "lucide-react";
+ import { User, Phone, Smartphone, CreditCard } from "lucide-react";
  
  interface OrderCustomerProps {
    name: string;
    phone: string;
    device: string;
+   paymentMethod?: string;
+   paymentDetail?: string;
  }
  
- export function OrderCustomer({ name, phone, device }: OrderCustomerProps) {
+ export function OrderCustomer({ name, phone, device, paymentMethod, paymentDetail }: OrderCustomerProps) {
    return (
      <div className="rounded-lg border bg-card p-4 card-shadow">
        <h2 className="mb-4 section-title">Customer Details</h2>
@@ -30,6 +32,14 @@
            label="Device"
            value={device}
          />
+         {paymentMethod && (
+           <CustomerRow
+             icon={<CreditCard className="h-4 w-4 text-info" />}
+             iconBg="bg-info/10"
+             label="Payment Method"
+             value={paymentDetail ? `${paymentMethod} •••• ${paymentDetail}` : paymentMethod}
+           />
+         )}
        </div>
      </div>
    );
