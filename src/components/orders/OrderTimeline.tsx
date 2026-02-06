@@ -1,11 +1,8 @@
 import { Check } from "lucide-react";
 
-type TimelineColor = "blue" | "red" | "orange" | "green" | "gray";
-
 interface TimelineEvent {
   status: string;
   date: string;
-  color?: TimelineColor;
   isCompleted?: boolean;
 }
 
@@ -13,13 +10,21 @@ interface OrderTimelineProps {
   events: TimelineEvent[];
 }
 
-const dotColors: Record<TimelineColor, string> = {
-  blue: "border-blue-500 bg-blue-500",
-  red: "border-red-500 bg-red-500",
-  orange: "border-orange-400 bg-orange-400",
-  green: "border-emerald-500 bg-emerald-500",
-  gray: "border-muted-foreground/40 bg-muted-foreground/40",
-};
+/** Map each status to its dot border color based on reference screenshots */
+function getStatusColor(status: string): string {
+  const s = status.toLowerCase();
+  if (s === "completed") return "border-emerald-500";
+  if (s === "payment failed" || s === "cancelled" || s === "failed") return "border-red-500";
+  if (s === "assigning driver") return "border-orange-400";
+  if (s === "delivery ongoing") return "border-orange-400";
+  if (s === "delivery picked up") return "border-blue-400";
+  if (s === "new") return "border-blue-500";
+  if (s === "ready to prepare") return "border-blue-500";
+  if (s === "kitchen accepted") return "border-blue-500";
+  if (s === "ready to deliver") return "border-gray-800 dark:border-gray-200";
+  if (s === "payment confirmed") return "border-blue-500";
+  return "border-muted-foreground/50";
+}
 
 export function OrderTimeline({ events }: OrderTimelineProps) {
   return (
@@ -28,7 +33,7 @@ export function OrderTimeline({ events }: OrderTimelineProps) {
       <div className="relative">
         {events.map((event, index) => {
           const isLast = index === events.length - 1;
-          const color = event.color || "gray";
+          const colorClass = getStatusColor(event.status);
 
           return (
             <div key={index} className="relative flex gap-3 pb-5 last:pb-0">
@@ -45,9 +50,7 @@ export function OrderTimeline({ events }: OrderTimelineProps) {
                   </div>
                 ) : (
                   <div
-                    className={`h-5 w-5 rounded-full border-[3px] bg-white dark:bg-card ${
-                      dotColors[color].split(" ")[0]
-                    }`}
+                    className={`h-5 w-5 rounded-full border-[3px] bg-white dark:bg-card ${colorClass}`}
                   />
                 )}
               </div>
