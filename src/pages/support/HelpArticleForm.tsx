@@ -3,7 +3,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { RichTextEditor } from "@/components/shared/RichTextEditor";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useState } from "react";
 
 export default function HelpArticleForm() {
   const navigate = useNavigate();
@@ -11,6 +13,9 @@ export default function HelpArticleForm() {
   const [searchParams] = useSearchParams();
   const categoryId = searchParams.get("category");
   const isEditing = Boolean(id);
+
+  const [contentEn, setContentEn] = useState("");
+  const [contentMs, setContentMs] = useState("");
 
   return (
     <div className="space-y-6">
@@ -63,7 +68,11 @@ export default function HelpArticleForm() {
           </div>
           <div className="space-y-2">
             <Label>Content (English) <span className="text-destructive">*</span></Label>
-            <Textarea rows={8} placeholder="Full article content..." />
+            <RichTextEditor 
+              content={contentEn}
+              onChange={setContentEn}
+              placeholder="Write your article content here..."
+            />
           </div>
         </div>
       </div>
@@ -84,7 +93,11 @@ export default function HelpArticleForm() {
           </div>
           <div className="space-y-2">
             <Label>Content (Malay) <span className="text-destructive">*</span></Label>
-            <Textarea rows={8} placeholder="Kandungan artikel penuh..." />
+            <RichTextEditor 
+              content={contentMs}
+              onChange={setContentMs}
+              placeholder="Tulis kandungan artikel anda di sini..."
+            />
           </div>
         </div>
       </div>
