@@ -24,18 +24,36 @@ import { PageHeader } from "@/components/shared/PageHeader";
      device: "Android",
    },
    items: [
-     {
-       name: "Nasi Lemak",
-       qty: 10,
-       price: "15.00",
-       total: "47.00",
-       addons: [{ name: "Barbican Flavors", qty: 1, price: "2.00" }],
-       modifiers: [
-         { name: "Barbican Flavors — Barbican Flavors", price: "10.00" },
-         { name: "Barbican Flavors — Barbican Flavors", price: "10.00" },
-         { name: "Barbican Flavors — Barbican Flavors", price: "10.00" },
-       ],
-     },
+      {
+        name: "Nasi Lemak",
+        qty: 10,
+        price: "15.00",
+        total: "47.00",
+        note: "EXTRA SALSA SAUCE",
+        addons: [{ name: "Barbican Flavors", qty: 1, price: "2.00" }],
+        modifiers: [
+          { name: "Barbican Flavors — Barbican Flavors", price: "10.00" },
+          { name: "Barbican Flavors — Barbican Flavors", price: "10.00" },
+          { name: "Barbican Flavors — Barbican Flavors", price: "10.00" },
+        ],
+      },
+      {
+        name: "Roti Canai",
+        qty: 5,
+        price: "8.00",
+        total: "40.00",
+        addons: [],
+        modifiers: [],
+      },
+      {
+        name: "Teh Tarik",
+        qty: 3,
+        price: "5.00",
+        total: "15.00",
+        note: "LESS SUGAR",
+        addons: [],
+        modifiers: [],
+      },
    ],
    subtotal: "470.00",
    tax: "28.20",
@@ -86,16 +104,17 @@ import { PageHeader } from "@/components/shared/PageHeader";
              <h2 className="mb-4 section-title">Items</h2>
              <div className="space-y-4">
                {orderData.items.map((item, index) => (
-                 <OrderItemCard
-                   key={index}
-                   name={item.name}
-                   qty={item.qty}
-                   price={item.price}
-                   total={item.total}
-                   addons={item.addons}
-                   modifiers={item.modifiers}
-                   emoji="🍛"
-                 />
+                  <OrderItemCard
+                    key={index}
+                    name={item.name}
+                    qty={item.qty}
+                    price={item.price}
+                    total={item.total}
+                    addons={item.addons}
+                    modifiers={item.modifiers}
+                    note={item.note}
+                    emoji="🍛"
+                  />
                ))}
                <OrderTotals
                  subtotal={orderData.subtotal}
