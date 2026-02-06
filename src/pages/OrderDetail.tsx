@@ -44,6 +44,7 @@
    total: "503.20",
   history: [
     { status: "New", date: "2026-02-04 11:24" },
+    { status: "Payment Failed", date: "2026-02-04 11:24" },
     { status: "Payment Confirmed", date: "2026-02-04 11:25" },
     { status: "Ready To Prepare", date: "2026-02-04 11:26" },
     { status: "Kitchen Accepted", date: "2026-02-04 19:04" },
