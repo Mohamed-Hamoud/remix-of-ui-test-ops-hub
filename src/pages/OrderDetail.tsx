@@ -4,7 +4,6 @@ import { OrderInfoCard } from "@/components/orders/OrderInfoCard";
 import { OrderItemCard } from "@/components/orders/OrderItemCard";
 import { OrderTotals } from "@/components/orders/OrderTotals";
 import { OrderTimeline } from "@/components/orders/OrderTimeline";
-import { OrderKitchenStatus } from "@/components/orders/OrderKitchenStatus";
 import { OrderCustomer } from "@/components/orders/OrderCustomer";
 import { OrderStatusBanner } from "@/components/orders/OrderStatusBanner";
 import { PageHeader } from "@/components/shared/PageHeader";
@@ -115,14 +114,10 @@ import { PageHeader } from "@/components/shared/PageHeader";
          </div>
  
          {/* Right Column */}
-         <div className="space-y-6">
-            <OrderKitchenStatus 
-              status="Kitchen Accepted" 
-              timestamp="2026-02-04 19:04" 
-            />
-           <OrderCustomer {...orderData.customer} />
-           <OrderStatusBanner status={orderData.status} />
-           <OrderTimeline events={orderData.history} />
+          <div className="space-y-6">
+            <OrderStatusBanner status={orderData.status} />
+            <OrderCustomer {...orderData.customer} />
+            <OrderTimeline events={orderData.history} />
  
            {/* Courier Details */}
            <div className="rounded-lg border bg-card p-4 card-shadow">
