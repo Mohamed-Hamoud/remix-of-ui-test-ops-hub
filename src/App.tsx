@@ -33,14 +33,19 @@ import BranchDetail from "./pages/BranchDetail";
   import Evaluations from "./pages/Evaluations";
   import VoucherForm from "./pages/VoucherForm";
   import VoucherDetail from "./pages/VoucherDetail";
-  import SupportTeams from "./pages/support/SupportTeams";
-  import IssueCategories from "./pages/support/IssueCategories";
-  import IssueCategoryForm from "./pages/support/IssueCategoryForm";
-  import SLAPolicies from "./pages/support/SLAPolicies";
-  import SLAPolicyForm from "./pages/support/SLAPolicyForm";
-  import CannedResponses from "./pages/support/CannedResponses";
-  import CannedResponseForm from "./pages/support/CannedResponseForm";
-  import SupportAnalytics from "./pages/support/SupportAnalytics";
+   import SupportTeams from "./pages/support/SupportTeams";
+   import IssueCategories from "./pages/support/IssueCategories";
+   import IssueCategoryForm from "./pages/support/IssueCategoryForm";
+   import SLAPolicies from "./pages/support/SLAPolicies";
+   import SLAPolicyForm from "./pages/support/SLAPolicyForm";
+   import CannedResponses from "./pages/support/CannedResponses";
+   import CannedResponseForm from "./pages/support/CannedResponseForm";
+   import SupportAnalytics from "./pages/support/SupportAnalytics";
+   import HelpCenter from "./pages/support/HelpCenter";
+   import HelpCenterCategoryDetail from "./pages/support/HelpCenterCategoryDetail";
+   import HelpCenterCategoryForm from "./pages/support/HelpCenterCategoryForm";
+   import HelpArticleForm from "./pages/support/HelpArticleForm";
+   import HelpCenterPreview from "./pages/support/HelpCenterPreview";
 
  const queryClient = new QueryClient({
    defaultOptions: {
