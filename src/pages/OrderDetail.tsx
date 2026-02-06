@@ -10,6 +10,7 @@ import { OrderEvaluationDetails } from "@/components/orders/OrderEvaluationDetai
 import { OrderRefundSection } from "@/components/orders/OrderRefundSection";
 import { PageHeader } from "@/components/shared/PageHeader";
 import driverZharifPhoto from "@/assets/driver-zharif.jpg";
+import driverSharifulPhoto from "@/assets/driver-shariful.jpg";
  
  // Mock order data
  const orderData = {
@@ -21,11 +22,13 @@ import driverZharifPhoto from "@/assets/driver-zharif.jpg";
    earnPoints: "503",
    branch: "Damascus Delivery",
    address: "Menara TA One, 22, Jalan P. Ramlee, Kuala Lumpur, 50250 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur, Malaysia",
-   customer: {
-     name: "Aisyah Binti Rahman",
-     phone: "+6012-345-6008",
-     device: "Android",
-   },
+    customer: {
+      name: "Aisyah Binti Rahman",
+      phone: "+6012-345-6008",
+      device: "Android",
+      paymentMethod: "Visa",
+      paymentDetail: "4242",
+    },
    items: [
       {
         name: "Nasi Lemak",
@@ -74,11 +77,12 @@ import driverZharifPhoto from "@/assets/driver-zharif.jpg";
     { status: "Completed", date: "2026-02-04 20:10", isCompleted: true },
   ],
   status: "accepted",
-  courier: {
-    name: "MUHAMAD SHARIFUL AMRIE B. MOHD AFANDI",
-    phone: "60132055720",
-    receiptUrl: "https://api.grab.com/ge/rcpt/ekVVb099",
-  },
+   courier: {
+     name: "MUHAMAD SHARIFUL AMRIE B. MOHD AFANDI",
+     phone: "60132055720",
+     photoUrl: driverSharifulPhoto,
+     receiptUrl: "https://api.grab.com/ge/rcpt/ekVVb099",
+   },
   evaluation: {
     foodRating: 4,
     foodEvaluation: "Followed Instructions",
