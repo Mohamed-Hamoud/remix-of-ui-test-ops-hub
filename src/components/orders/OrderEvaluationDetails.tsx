@@ -42,46 +42,49 @@ export function OrderEvaluationDetails({
     <div className="rounded-lg border bg-card p-4 card-shadow">
       <h2 className="mb-4 section-title">Evaluation Details</h2>
       <div className="space-y-4">
-        {/* Food Evaluation */}
-        <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50 border">
-          <div className="h-8 w-8 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center flex-shrink-0">
-            <Utensils className="h-4 w-4 text-amber-500" />
+        {/* Food & Driver side by side */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Food Evaluation */}
+          <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50 border">
+            <div className="h-8 w-8 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center flex-shrink-0">
+              <Utensils className="h-4 w-4 text-amber-500" />
+            </div>
+            <div>
+              <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Food Evaluation
+              </span>
+              <StarRating rating={foodRating} />
+              {foodEvaluation && (
+                <p className="text-sm text-muted-foreground mt-1">{foodEvaluation}</p>
+              )}
+            </div>
           </div>
-          <div>
-            <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-              Food Evaluation
-            </span>
-            <StarRating rating={foodRating} />
-            {foodEvaluation && (
-              <p className="text-sm text-muted-foreground mt-1">{foodEvaluation}</p>
-            )}
-          </div>
-        </div>
 
-        {/* Driver Evaluation */}
-        <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50 border">
-          <Avatar className="h-10 w-10 flex-shrink-0">
-            {driverPhotoUrl ? (
-              <AvatarImage src={driverPhotoUrl} alt={driverName || "Driver"} />
-            ) : null}
-            <AvatarFallback className="bg-blue-100 dark:bg-blue-900/30 text-blue-500 text-xs">
-              {driverName
-                ? driverName
-                    .split(" ")
-                    .map((n) => n[0])
-                    .slice(0, 2)
-                    .join("")
-                : "DR"}
-            </AvatarFallback>
-          </Avatar>
-          <div>
-            <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-              Driver Evaluation
-            </span>
-            <StarRating rating={driverRating} />
-            {driverName && (
-              <p className="text-sm font-medium mt-1">{driverName}</p>
-            )}
+          {/* Driver Evaluation */}
+          <div className="flex items-start gap-3 p-3 rounded-lg bg-muted/50 border">
+            <Avatar className="h-10 w-10 flex-shrink-0">
+              {driverPhotoUrl ? (
+                <AvatarImage src={driverPhotoUrl} alt={driverName || "Driver"} />
+              ) : null}
+              <AvatarFallback className="bg-blue-100 dark:bg-blue-900/30 text-blue-500 text-xs">
+                {driverName
+                  ? driverName
+                      .split(" ")
+                      .map((n) => n[0])
+                      .slice(0, 2)
+                      .join("")
+                  : "DR"}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Driver Evaluation
+              </span>
+              <StarRating rating={driverRating} />
+              {driverName && (
+                <p className="text-sm font-medium mt-1">{driverName}</p>
+              )}
+            </div>
           </div>
         </div>
 
