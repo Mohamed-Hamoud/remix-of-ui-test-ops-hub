@@ -27,13 +27,13 @@ export function OrderInfoCard({
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-3">
           <InfoRow label="Order ID" value={`#${orderId}`} isPrimary />
-          <InfoRow label="Created" value={created} />
-          <InfoRow label="Gateway Fee" value={gatewayFee} />
+          <InfoRow label="Internal ID" value={internalId} />
+          <InfoRow label="Gateway Fee" value={`RM ${gatewayFee}`} />
           <InfoRow label="Branch" value={branch} />
         </div>
         <div className="space-y-3">
-          <InfoRow label="Internal ID" value={internalId} />
-          <InfoRow label="Ext. Delivery Fee" value={extDeliveryFee} />
+          <InfoRow label="Created" value={created} />
+          <InfoRow label="Ext. Delivery Fee" value={`RM ${extDeliveryFee}`} />
           <InfoRow label="Est. Earn Points" value={earnPoints} />
           <InfoRow label="Delivery Address" value={address} />
         </div>
