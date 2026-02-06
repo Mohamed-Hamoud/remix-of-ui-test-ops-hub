@@ -9,6 +9,7 @@ import { OrderCourierDetails } from "@/components/orders/OrderCourierDetails";
 import { OrderEvaluationDetails } from "@/components/orders/OrderEvaluationDetails";
 import { OrderRefundSection } from "@/components/orders/OrderRefundSection";
 import { PageHeader } from "@/components/shared/PageHeader";
+import driverZharifPhoto from "@/assets/driver-zharif.jpg";
  
  // Mock order data
  const orderData = {
@@ -79,8 +80,11 @@ import { PageHeader } from "@/components/shared/PageHeader";
     receiptUrl: "https://api.grab.com/ge/rcpt/ekVVb099",
   },
   evaluation: {
+    foodRating: 4,
     foodEvaluation: "Followed Instructions",
+    driverRating: 2,
     driverName: "MOHD ZHARIF BIN KAUZI",
+    driverPhotoUrl: driverZharifPhoto,
     note: "The order took about 2 hours to arrive... It's really unbelievable",
   },
 };
@@ -135,23 +139,23 @@ export default function OrderDetail() {
                  total={orderData.total}
                />
              </div>
-           </div>
- 
-        {/* Refund History */}
-            <OrderRefundSection orderTotal={orderData.total} />
-         </div>
- 
-         {/* Right Column */}
-          <div className="space-y-6">
-            <OrderStatusBanner status={orderData.status} />
-            <OrderCustomer {...orderData.customer} />
-            <OrderTimeline events={orderData.history} />
- 
-          {/* Courier Details */}
-            <OrderCourierDetails {...orderData.courier} />
+            </div>
 
             {/* Evaluation Details */}
             <OrderEvaluationDetails {...orderData.evaluation} />
+  
+         {/* Refund History */}
+             <OrderRefundSection orderTotal={orderData.total} />
+          </div>
+  
+          {/* Right Column */}
+           <div className="space-y-6">
+             <OrderStatusBanner status={orderData.status} />
+             <OrderCustomer {...orderData.customer} />
+             <OrderTimeline events={orderData.history} />
+  
+           {/* Courier Details */}
+             <OrderCourierDetails {...orderData.courier} />
          </div>
        </div>
      </div>
