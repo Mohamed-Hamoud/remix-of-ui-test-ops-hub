@@ -17,7 +17,7 @@ import driverSharifulPhoto from "@/assets/driver-shariful.jpg";
    id: "DF-268-FF3A-040226",
    internalId: "66",
    created: "2026-02-04 11:24",
-   extDeliveryFee: "0.00",
+   extDeliveryFee: "19.90",
    gatewayFee: "16.10",
    earnPoints: "503",
    branch: "Damascus Delivery",
