@@ -96,8 +96,15 @@ const App = () => (
                <Route path="/support/canned-responses" element={<CannedResponses />} />
                <Route path="/support/canned-responses/new" element={<CannedResponseForm />} />
                <Route path="/support/canned-responses/:id/edit" element={<CannedResponseForm />} />
-               <Route path="/support/analytics" element={<SupportAnalytics />} />
-               <Route path="/support/settings" element={<SupportSettings />} />
+                <Route path="/support/analytics" element={<SupportAnalytics />} />
+                <Route path="/support/settings" element={<SupportSettings />} />
+                <Route path="/support/help-center" element={<HelpCenter />} />
+                <Route path="/support/help-center/preview" element={<HelpCenterPreview />} />
+                <Route path="/support/help-center/categories/new" element={<HelpCenterCategoryForm />} />
+                <Route path="/support/help-center/categories/:id" element={<HelpCenterCategoryDetail />} />
+                <Route path="/support/help-center/categories/:id/edit" element={<HelpCenterCategoryForm />} />
+                <Route path="/support/help-center/articles/new" element={<HelpArticleForm />} />
+                <Route path="/support/help-center/articles/:id/edit" element={<HelpArticleForm />} />
               <Route path="/branches" element={<Branches />} />
             <Route path="/branches/:id" element={<BranchDetail />} />
               <Route path="/restaurant-app" element={<RestaurantApp />} />
