@@ -1,41 +1,71 @@
 import { PageHeader } from "@/components/shared/PageHeader";
 import { useState } from "react";
 import { TabNavigation } from "@/components/shared/TabNavigation";
-import { BarChart3, TrendingUp, Clock, CheckCircle, Percent, AlertCircle } from "lucide-react";
+import { SLATab } from "@/components/analytics/SLATab";
+import { AIChatTab } from "@/components/analytics/AIChatTab";
+import { HelpCenterTab } from "@/components/analytics/HelpCenterTab";
+import { useNavigate } from "react-router-dom";
+
+const tabs = [
+  { id: "overview", label: "Overview" },
+  { id: "agents", label: "Agents" },
+  { id: "sla", label: "SLA" },
+  { id: "ai-chat", label: "AI Chat" },
+  { id: "help-center", label: "Help Center" },
+];
+
+const tabTitles: Record<string, string> = {
+  overview: "Support Analytics",
+  agents: "Support Analytics",
+  sla: "SLA & Satisfaction",
+  "ai-chat": "AI Chat Analytics",
+  "help-center": "Help Center Analytics",
+};
+
+const overviewStats = [
+  { label: "TOTAL TICKETS", value: 0, color: "text-foreground" },
+  { label: "RESOLVED", value: 0, color: "text-success" },
+  { label: "RESOLUTION RATE", value: "0%", color: "text-primary" },
+  { label: "AVG RESPONSE", value: "0m", color: "text-foreground" },
+  { label: "AVG RESOLUTION", value: "0h", color: "text-foreground" },
+  { label: "SLA COMPLIANCE", value: "100%", color: "text-success" },
+];
 
 export default function SupportAnalytics() {
   const [activeTab, setActiveTab] = useState("overview");
-
-  const tabs = [
-    { id: "overview", label: "Overview" },
-    { id: "agents", label: "Agents" },
-    { id: "sla", label: "SLA" },
-    { id: "ai-chat", label: "AI Chat" },
-    { id: "help-center", label: "Help Center" },
-  ];
-
-  const stats = [
-    { label: "TOTAL TICKETS", value: 0, color: "text-foreground" },
-    { label: "RESOLVED", value: 0, color: "text-success" },
-    { label: "RESOLUTION RATE", value: "0%", color: "text-primary" },
-    { label: "AVG RESPONSE", value: "0m", color: "text-foreground" },
-    { label: "AVG RESOLUTION", value: "0h", color: "text-foreground" },
-    { label: "SLA COMPLIANCE", value: "100%", color: "text-success" },
-  ];
+  const navigate = useNavigate();
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <PageHeader
-          title="Support Analytics"
+          title={tabTitles[activeTab] || "Support Analytics"}
           subtitle="Last 30 Days"
           backLink="/support"
           backLabel="Back to Support"
         />
         <div className="flex items-center gap-3">
-          <button className="text-sm font-medium text-muted-foreground hover:text-foreground">Dashboard</button>
+          <button
+            onClick={() => navigate("/support")}
+            className="text-sm font-medium text-muted-foreground hover:text-foreground"
+          >
+            Dashboard
+          </button>
+          {activeTab === "ai-chat" && (
+            <button className="btn-primary text-xs px-4 py-2">Test AI Chat</button>
+          )}
+          {activeTab === "help-center" && (
+            <button
+              onClick={() => navigate("/support/help-center")}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground"
+            >
+              Help Articles
+            </button>
+          )}
           <select className="h-9 px-3 rounded-md border border-input bg-primary text-primary-foreground text-sm font-bold">
             <option>Last 30 Days</option>
+            <option>Last 7 Days</option>
+            <option>Last 90 Days</option>
           </select>
         </div>
       </div>
@@ -44,9 +74,9 @@ export default function SupportAnalytics() {
 
       {activeTab === "overview" && (
         <div className="space-y-4">
-          {/* Stats Row - Compact */}
+          {/* Stats Row */}
           <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
-            {stats.map((s, i) => (
+            {overviewStats.map((s, i) => (
               <div key={i} className="rounded-lg border border-border bg-card p-4 card-shadow">
                 <span className={`text-2xl font-bold ${s.color}`}>{s.value}</span>
                 <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mt-1">{s.label}</p>
@@ -54,7 +84,7 @@ export default function SupportAnalytics() {
             ))}
           </div>
 
-          {/* Charts Grid - Compact */}
+          {/* Charts Grid */}
           <div className="grid gap-4 lg:grid-cols-3">
             <div className="rounded-lg border border-border bg-card p-4 card-shadow">
               <h3 className="text-xs font-bold text-foreground mb-2">Ticket Volume Trend</h3>
@@ -93,7 +123,7 @@ export default function SupportAnalytics() {
       {activeTab === "agents" && (
         <div className="space-y-6">
           <div className="rounded-xl border border-border bg-card card-shadow overflow-hidden">
-             <div className="px-6 py-4 border-b border-border bg-muted/5">
+            <div className="px-6 py-4 border-b border-border bg-muted/5">
               <h3 className="text-sm font-bold text-foreground">Individual Agent Performance</h3>
             </div>
             <div className="p-20 text-center">
@@ -102,12 +132,12 @@ export default function SupportAnalytics() {
           </div>
 
           <div className="rounded-xl border border-border bg-card card-shadow overflow-hidden">
-             <div className="px-6 py-4 border-b border-border bg-muted/5">
+            <div className="px-6 py-4 border-b border-border bg-muted/5">
               <h3 className="text-sm font-bold text-foreground">Team Performance</h3>
             </div>
             <div className="p-8 space-y-8">
               <div className="space-y-6">
-                <h4 className="text-lg font-bold text-primary">Cusmtomer support 1</h4>
+                <h4 className="text-lg font-bold text-primary">Customer Support 1</h4>
                 <div className="grid grid-cols-3 gap-8">
                   <div className="text-center space-y-1">
                     <p className="text-3xl font-bold">0</p>
@@ -127,6 +157,10 @@ export default function SupportAnalytics() {
           </div>
         </div>
       )}
+
+      {activeTab === "sla" && <SLATab />}
+      {activeTab === "ai-chat" && <AIChatTab />}
+      {activeTab === "help-center" && <HelpCenterTab />}
     </div>
   );
 }
